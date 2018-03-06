@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   # email and username are present and unique.
   validates_presence_of     :email
-  validates_presence_of     :username
+  # validates_presence_of     :username
   validates_uniqueness_of   :email
   validates_uniqueness_of   :username
 

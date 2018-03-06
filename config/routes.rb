@@ -12,4 +12,11 @@ Rails.application.routes.draw do
   post   '/users/create'   => 'users#create'
   patch  '/user/:id'       => 'users#update'
   delete '/user/:id'       => 'users#destroy'
+
+  # Invitation actions
+  get    '/invitations'          => 'invitations#index'
+  post   '/invitations/create'   => 'invitations#create'
+  patch  '/invitation/:id'       => 'invitations#update'
+  delete '/invitation/:id'       => 'invitations#destroy'
+
 end
