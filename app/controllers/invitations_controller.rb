@@ -6,31 +6,24 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    invitation = Invitation.create(
+    @invitation = Invitation.create(
       sender_id: params[:id], 
       invitation_token: SecureRandom.uuid, 
       status: 0, 
-      email: params[:email]
+      email: params[:email],
+      message: params[:message],
+      sender_email: params[:sender_email]
     )
 
-    if invitation.save
-      render json: {status: 200, msg: 'Invitation was created.'}
+    if @invitation.save
+      render json: @invitation
     end
 
   end
 
   def update
     invitation = Invitation.find(params[:id])
-
-    invitation.update(
-      status: 0, 
-    )
-
-    if user.update(
-      sender_id: current_user.id, 
-      status: 0, 
-      email: params[:email]
-    )
+    if invitation.update(status: params[:status], viewed_at: Time.now)
       render json: { status: 200, msg: 'Invitation details have been updated.' }
     end
   end
